@@ -1,0 +1,6 @@
+.navbar{
+  background-color:darkcyan;
+  color:bisque;
+  display: flex;
+  width: 100%;
+}
