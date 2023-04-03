@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -17,10 +19,14 @@ export class SignupComponent implements OnInit {
 
   })
 
-  constructor() { }
+  constructor(private authService:AuthService) { }
 
   onSubmit(){
-    console.log(this.signupForm)
+    const user = this.signupForm.value
+
+   this.authService.signup(user).subscribe((res: any) => {
+      console.log(res)
+    })
   }
 
   ngOnInit(): void {
