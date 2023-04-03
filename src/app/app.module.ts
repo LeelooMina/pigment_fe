@@ -6,12 +6,13 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PostsComponent } from './posts/posts.component';
 import { PaletteComponent } from './palette/palette.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './auth/login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PaintsComponent } from './paints/paints.component';
 import { PigmentsComponent } from './pigments/pigments.component';
-import { SignupComponent } from './signup/signup.component';
+import { SignupComponent } from './auth/signup/signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
