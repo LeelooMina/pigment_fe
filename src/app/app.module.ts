@@ -10,6 +10,8 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PaintsComponent } from './paints/paints.component';
 import { PigmentsComponent } from './pigments/pigments.component';
+import { SignupComponent } from './signup/signup.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,11 +22,14 @@ import { PigmentsComponent } from './pigments/pigments.component';
     LoginComponent,
     ProfileComponent,
     PaintsComponent,
-    PigmentsComponent
+    PigmentsComponent,
+    SignupComponent,
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

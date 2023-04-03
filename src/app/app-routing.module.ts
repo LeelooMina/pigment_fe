@@ -4,12 +4,17 @@ import { LoginComponent } from './login/login.component';
 import { PaintsComponent } from './paints/paints.component';
 import { PaletteComponent } from './palette/palette.component';
 import { PostsComponent } from './posts/posts.component';
+import { SignupComponent } from './signup/signup.component';
 
 const routes: Routes = [
 
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'signup',
+    component: SignupComponent
   },
   {
     path: 'palette',
