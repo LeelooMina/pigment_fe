@@ -10,9 +10,13 @@ import { LoginComponent } from './auth/login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PaintsComponent } from './paints/paints.component';
 import { PigmentsComponent } from './pigments/pigments.component';
+<<<<<<< Updated upstream
 import { SignupComponent } from './auth/signup/signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
+=======
+import { PostComponent } from './posts/post/post.component';
+>>>>>>> Stashed changes
 
 @NgModule({
   declarations: [
@@ -24,8 +28,12 @@ import { HttpClientModule } from '@angular/common/http'
     ProfileComponent,
     PaintsComponent,
     PigmentsComponent,
+<<<<<<< Updated upstream
     SignupComponent,
 
+=======
+    PostComponent
+>>>>>>> Stashed changes
   ],
   imports: [
     BrowserModule,
