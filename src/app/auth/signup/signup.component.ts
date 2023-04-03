@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AuthService } from '../auth.service';
@@ -22,9 +21,9 @@ export class SignupComponent implements OnInit {
   constructor(private authService:AuthService) { }
 
   onSubmit(){
-    const user = this.signupForm.value
+    const newUser = this.signupForm.value
 
-   this.authService.signup(user).subscribe((res: any) => {
+   this.authService.signup(newUser).subscribe((res: any) => {
       console.log(res)
     })
   }
