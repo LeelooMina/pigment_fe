@@ -8,7 +8,11 @@ export class AuthService {
 
   constructor(private http:HttpClient) { }
 
-  signup(user){
-    return  this.http.post("http://localhost:3000/api/v1/users/create", user)
+  signup(newUser: any){
+    return  this.http.post("http://localhost:3000/api/v1/users/create", newUser)
+  }
+
+  login(userLogin: any){
+    return  this.http.post("http://localhost:3000/api/v1/users/login", userLogin)
   }
 }
