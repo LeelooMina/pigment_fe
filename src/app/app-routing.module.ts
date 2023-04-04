@@ -6,6 +6,7 @@ import { PaletteComponent } from './palette/palette.component';
 import { PostComponent } from './posts/post/post.component';
 import { PostsComponent } from './posts/posts.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
 
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: 'post',
     component: PostComponent
+  },
+  {
+    path: 'home',
+    component: HomeComponent
   }
 
 ];
