@@ -10,20 +10,6 @@ export class AuthService {
 
   constructor(private http:HttpClient, private route:Router, private userService:UserService) { }
 
-  getToken(){
-
-    if (localStorage.getItem('token') != null){
-    return JSON.parse(localStorage.getItem('token')!)
-    }
-    else{
-      return null;
-    }
-  }
-
-  setToken(token: any){
-    localStorage.setItem('token', JSON.stringify(token))
-
-  }
 
   autoSignIn(){
     const token = this.getToken()
@@ -54,6 +40,40 @@ export class AuthService {
   }
 
   logout(){
-    
+    const token = this.getToken();
+
+    this.http.delete("http://localhost:3000/api/v1/users/logout", {
+      headers: {
+        Authorization: `Bearer ${token.value}`
+      }
+    }).subscribe((res:any) =>{
+      if(res.success){
+        this.deleteToken();
+        this.userService.setCurrentUser(null)
+        this.route.navigate(['/login'])
+      }
+    }
+    )
+
+  }
+
+  getToken(){
+
+    if (localStorage.getItem('token') != null){
+    return JSON.parse(localStorage.getItem('token')!)
+    }
+    else{
+      return null;
+    }
+  }
+
+  setToken(token: any){
+    localStorage.setItem('token', JSON.stringify(token))
+
+  }
+
+
+  deleteToken(){
+    localStorage.removeItem('token')
   }
 }

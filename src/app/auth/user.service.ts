@@ -12,7 +12,7 @@ export class UserService {
 
   constructor() { }
 
-  setCurrentUser(user: User){
+  setCurrentUser(user: User | null){
     this.currentUserSubject.next(user);
   }
 
