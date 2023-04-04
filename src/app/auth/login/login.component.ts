@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { FormControl, FormGroup } from '@angular/forms';
+import { UserService } from '../user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,14 +16,19 @@ export class LoginComponent implements OnInit {
     password: new FormControl('')
   })
 
-  constructor(private authService:AuthService) { }
+  constructor(private authService:AuthService, private userService:UserService, private route:Router) { }
 
   onSubmit(){
     const userLogin = this.loginForm.value
 
    this.authService.login(userLogin).subscribe((res: any) => {
-      console.log(res)
-    })
+    if(res.success){
+      this.userService.setCurrentUser(res.payload.user)
+      this.authService.setToken(res.payload.token)
+      this.route.navigate(['/home'])
+    }
+
+  })
   }
 
 
