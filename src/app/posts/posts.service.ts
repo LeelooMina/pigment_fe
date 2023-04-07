@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Post } from '../shared/models/post.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,5 +13,9 @@ export class PostsService {
 
   getPosts() {
     return this.http.get(this.baseUrl);
+  }
+
+  addPost(post: Post){
+
   }
 }
