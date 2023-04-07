@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { PostsService } from '../posts/posts.service';
 import { Post } from '../shared/models/post.model';
 
 @Component({
@@ -8,7 +10,15 @@ import { Post } from '../shared/models/post.model';
 export class PostFormComponent {
   newPost = new Post(0, '', '', 0);
 
-  createPost() {
-    // Implement logic to create a new post here
+  constructor(private postsService:PostsService){}
+
+  createPost(form: NgForm) {
+    const post = new Post(0, form.value.title, form.value.content, 0);
+    this.postsService.addPost(post).subscribe((res: any) => {
+      if (res.success) {
+        this.newPost = new Post(0, '', '', 0);
+        form.resetForm();
+      }
+    });
   }
 }
