@@ -16,7 +16,7 @@ export class PostsService {
     return this.http.get(this.baseUrl + 'posts');
   }
 
-  addPost(post: Post){
+  addPost(post: any){
    const token = this.authService.getToken()
 
     return this.http.post(this.baseUrl + 'posts', post, {
