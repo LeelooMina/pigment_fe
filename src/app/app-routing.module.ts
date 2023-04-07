@@ -7,6 +7,7 @@ import { PostComponent } from './posts/post/post.component';
 import { PostsComponent } from './posts/posts.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { HomeComponent } from './home/home.component';
+import { PigmentsComponent } from './pigments/pigments.component';
 
 const routes: Routes = [
 
@@ -37,6 +38,10 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent
+  },
+  {
+    path: 'pigments',
+    component: PigmentsComponent
   }
 
 ];

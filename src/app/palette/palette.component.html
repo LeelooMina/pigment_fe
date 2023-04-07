@@ -1,1 +1,12 @@
 <p>palette works!</p>
+<div class="d-flex justify-content-center align-items-center">
+<div class="watercolor-tin">
+<div class="paints d-flex flex-row m-3">
+  <div class="paint d-flex justify-content-center align-items-center" *ngFor="let color of rainbowColors1" [style.background-color]="color"><h3>+</h3></div>
+</div>
+<div class="paints d-flex flex-row m-3">
+  <div class="paint d-flex justify-content-center align-items-center" *ngFor="let color of rainbowColors2" [style.background-color]="color"><h3>+</h3></div>
+</div>
+</div>
+</div>
+
