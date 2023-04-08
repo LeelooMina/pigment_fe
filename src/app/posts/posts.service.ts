@@ -13,7 +13,9 @@ export class PostsService {
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   getPosts() {
-    return this.http.get(this.baseUrl + 'posts');
+    return this.http.get(this.baseUrl + 'posts').pipe(
+      
+    );
   }
 
   addPost(post: any){
