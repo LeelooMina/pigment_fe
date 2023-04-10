@@ -13,10 +13,12 @@ export class PostsService {
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   getPosts() {
-    return this.http.get(this.baseUrl + 'posts');
+    return this.http.get(this.baseUrl + 'posts').pipe(
+      
+    );
   }
 
-  addPost(post: Post){
+  addPost(post: any){
    const token = this.authService.getToken()
 
     return this.http.post(this.baseUrl + 'posts', post, {

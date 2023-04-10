@@ -16,7 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 import { PostComponent } from './posts/post/post.component';
 import { HomeComponent } from './home/home.component';
-import { PostFormComponent } from './post-form/post-form.component';
+import { PostFormComponent } from './posts/post-form/post-form.component';
 
 @NgModule({
   declarations: [
