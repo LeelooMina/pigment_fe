@@ -24,7 +24,5 @@ export class PostsService {
         Authorization: `Bearer ${token.value}`
       }
     });
-
-
   }
 }
