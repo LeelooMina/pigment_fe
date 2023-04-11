@@ -6,11 +6,11 @@ import { Injectable } from '@angular/core';
 })
 export class PigmentsServices {
 
-  baseUrl = 'http://localhost:3000/api/v1/pigments/'
+  baseUrl = 'http://localhost:3000/api/v1/'
 
   constructor(private http: HttpClient) { }
 
-  getCourses() {
+  getPigments() {
     return this.http.get(this.baseUrl + 'pigments');
   }
 }

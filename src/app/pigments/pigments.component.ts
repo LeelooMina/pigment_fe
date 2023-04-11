@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { PigmentsServices } from './pigments.service';
 
 @Component({
   selector: 'app-pigments',
@@ -11,14 +12,18 @@ export class PigmentsComponent implements OnInit {
 
   baseUrl = 'http://localhost:3000/api/v1/pigments/'
 
-  constructor(private http: HttpClient) { }
+  pigments: any;
+
+  constructor(private http: HttpClient, private pigmentsService:PigmentsServices) { }
 
   ngOnInit(): void {
+    this.pigmentsService.getPigments().subscribe((res:any) => {
+      console.log(res)
+      this.pigments = res
+    })
 
   }
 
-  getCourses() {
-    return this.http.get(this.baseUrl + 'list');
-  }
+
 
 }
