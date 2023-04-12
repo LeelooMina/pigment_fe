@@ -1,12 +1,14 @@
 <p>palette works!</p>
 <div class="d-flex justify-content-center align-items-center">
 <div class="watercolor-tin">
-<div class="paints d-flex flex-sm-row m-3">
-  <div class="paint d-flex justify-content-center align-items-center" *ngFor="let color of rainbowColors1.slice(0,2)" [style.background-color]="color"><h3>+</h3></div>
+<div class="paints d-flex justify-content-between flex-row m-3">
+  <div class="paint d-flex justify-content-center align-items-center" *ngFor="let color of paletteColors.slice(0,6)" [style.background-color]="color"><h3>+</h3></div>
 </div>
-<div class="paints d-flex flex-sm-row flex-column m-3">
-  <div class="paint d-flex justify-content-center align-items-center" *ngFor="let color of rainbowColors2" [style.background-color]="color"><h3>+</h3></div>
+<div class="paints d-flex justify-content-between flex-row m-3">
+  <div class="paint d-flex justify-content-center align-items-center" *ngFor="let color of paletteColors.slice(6,12)" [style.background-color]="color"><h3 class="plus-sign" (click)="toggleMenu()">+</h3></div>
 </div>
 </div>
 </div>
+
+<div class="menu">Test</div>
 
