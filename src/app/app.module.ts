@@ -17,6 +17,9 @@ import { HttpClientModule } from '@angular/common/http'
 import { PostComponent } from './posts/post/post.component';
 import { HomeComponent } from './home/home.component';
 import { PostFormComponent } from './posts/post-form/post-form.component';
+import { NewPaletteComponent } from './palette/new-palette/new-palette.component';
+import { UpdatePaletteComponent } from './palette/update-palette/update-palette.component';
+import { ShowPaletteComponent } from './palette/show-palette/show-palette.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { PostFormComponent } from './posts/post-form/post-form.component';
     SignupComponent,
     PostComponent,
     HomeComponent,
-    PostFormComponent
+    PostFormComponent,
+    NewPaletteComponent,
+    UpdatePaletteComponent,
+    ShowPaletteComponent
   ],
   imports: [
     BrowserModule,
