@@ -1,12 +1,15 @@
-<div style="border: 1px solid black; margin-bottom: 5px;" *ngFor="let pigment of pigments">
-  <div class="card">
-    <div class="card-header">
-      {{pigment.name}}
-    </div>
-    <div class="card-body">
-      <h5 class="card-title">{{pigment.description}}</h5>
-      <p class="card-text">color swatch here</p>
-      <a href="#" class="btn btn-outline-info">Like</a>
+<div class="container m-3">
+  <div class="row">
+    <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-3" *ngFor="let pigment of pigments">
+      <div style="border: 1px solid black; height: 100%;" class="card">
+        <div class="card-header">
+          {{pigment.name}}
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{pigment.description}}</h5>
+          <p class="card-text">color swatch here</p>
+        </div>
+      </div>
     </div>
   </div>
-  </div>
+</div>
