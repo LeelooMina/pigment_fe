@@ -21,6 +21,11 @@ export class PostsComponent implements OnInit {
           console.log(this.posts)
         // }
       })
+
+      this.postsService.subscribeToNewPosts().subscribe((post: Post) => {
+        // Add the new post to the posts array
+        this.posts.push(post);
+    });
   }
 
 }
