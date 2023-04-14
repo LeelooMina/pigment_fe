@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { PaintServices } from '../paints/paint.service';
+import { Paint } from '../shared/models/paint.model';
+import { PaletteService } from './palette.service';
 
 @Component({
   selector: 'app-palette',
@@ -7,29 +10,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaletteComponent implements OnInit {
 
+// paletteColors: any;
+
+
 paletteColors = [
-  '#FFFFFF',
-  '#FFFFFF',
-  '#FFFFFF',
-  '#FFFFFF',
-  '#FFFFFF',
-  '#FFFFFF',
-  '#FFFFFF',
-  '#FFFFFF',
-  '#FFFFFF',
-  '#FFFFFF',
-  '#FFFFFF',
-  '#FFFFFF',
-];
+  "#FFFFFF",
+  "#FFFFFF",
+  "#FFFFFF",
+  "#FFFFFF",
+  "#FFFFFF",
+  "#FFFFFF",
+  "#FFFFFF",
+  "#FFFFFF",
+  "#FFFFFF",
+  "#FFFFFF",
+  "#FFFFFF",
+  "#FFFFFF",
+
+]
 
 menuNav = []
 
 menuToggle = false;
 
+paintTest: Paint[] = []
 
-  constructor() { }
+
+  constructor(private paletteService:PaletteService) { }
 
   ngOnInit(): void {
+    this.paletteService.subscribeToNewPaints().subscribe((paint: Paint) => {
+      this.paintTest.push(paint)
+    })
   }
 
   toggleMenu(){

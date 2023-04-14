@@ -10,5 +10,9 @@
 </div>
 </div>
 
-<div class="menu"><app-pigments></app-pigments>
+<div *ngFor="let paint of paintTest">
+  {{paint.name}}
+</div>
+
+<div class="menu"><app-paints></app-paints></div>
 
