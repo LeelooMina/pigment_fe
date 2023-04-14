@@ -6,7 +6,7 @@
     <div class="post" style="border: 1px solid black; margin-bottom: 5px;" *ngFor="let post of posts">
       <div class="card">
         <div class="card-header">
-          {{post.id}} {{post.username}}
+          @{{post.username}}
         </div>
         <div class="card-body">
           <h5 class="card-title">{{post.title}}</h5>

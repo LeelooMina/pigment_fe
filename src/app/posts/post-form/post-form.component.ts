@@ -10,6 +10,12 @@ import { UserService } from 'src/app/auth/user.service';
 })
 export class PostFormComponent {
 
+  currentUser: any;
+
+  ngOnInit(): void {
+  this.currentUser = this.userService.currentUser;
+  }
+
 
   postFormGroup = new FormGroup({
     title: new FormControl(''),
@@ -21,9 +27,14 @@ export class PostFormComponent {
   createPost() {
     const newPost = this.postFormGroup.value;
 
+    const currentUsername = this.currentUser.username;
+    const post = newPost as Post
+    // Add current username to newPost object
+    post.username = currentUsername;
 
 
-    this.postsService.addPost(newPost).subscribe({
+
+    this.postsService.addPost(post).subscribe({
 
       next: (res: any) => {
         // this.closeBtn.nativeElement.click();
