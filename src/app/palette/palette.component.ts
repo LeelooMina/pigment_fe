@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { PaintServices } from '../paints/paint.service';
 import { Paint } from '../shared/models/paint.model';
 import { PaletteService } from './palette.service';
@@ -33,16 +34,44 @@ menuNav = []
 
 menuToggle = false;
 
-paintTest: Paint[] = []
+paintArr: any;
+
+paletteForm = new FormGroup({
+  description: new FormControl(''),
+  name: new FormControl(''),
+
+})
+
+
 
 
   constructor(private paletteService:PaletteService) { }
 
   ngOnInit(): void {
-    this.paletteService.subscribeToNewPaints().subscribe((paint: Paint) => {
-      this.paintTest.push(paint)
+    this.paintArr = this.paletteService.currentPaints
+    this.paletteService.subscribeToNewPaints().subscribe((paints) => {
+      this.paintArr = paints
+      console.log(this.paintArr)
     })
+
+    this.paletteService.subscribeToRemovePaints().subscribe((paints) => {
+      this.paintArr = paints
+      console.log(this.paintArr)
+    });
+
+
   }
+
+  deletePaint(paint: Paint){
+    this.paletteService.deletePaint(paint)
+  }
+
+  savePalette(){
+    const formData = this.paletteForm.value;
+
+  }
+
+
 
   toggleMenu(){
 
