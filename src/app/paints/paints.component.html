@@ -1,3 +1,10 @@
+
+<ul class="nav nav-tabs">
+  <li class="nav-item" *ngFor="let color of colorMenu">
+    <a class="nav-link" [class.active]="color === selectedColor" (click)="selectColor(color)">{{color}}</a>
+  </li>
+</ul>
+
 <div class="container m-3">
   <div class="row">
     <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-3" *ngFor="let paint of paints">
@@ -8,7 +15,7 @@
         <div class="card-body">
           <h5 class="card-title">{{paint.name}}</h5>
           <p class="card-text">Color swatch here</p>
-          {{paint.pigments[0].name}}
+          {{paint.pigments[0]?.name}}
         </div>
       </div>
     </div>

@@ -15,4 +15,8 @@ export class PaintServices {
     return this.http.get(this.baseUrl + 'paints');
   }
 
+  filterPaints(){
+    return this.http.get(this.baseUrl + 'paints');
+  }
+
 }

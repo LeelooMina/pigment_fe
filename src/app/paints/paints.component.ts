@@ -11,6 +11,18 @@ import { PaintServices } from './paint.service';
 export class PaintsComponent implements OnInit {
 
   paints: any;
+  colorMenu = [
+  "All",
+  "Red",
+  "Orange",
+  "Yellows",
+  "Greens",
+  "Blues",
+  "Purple",
+  "Black",
+  "White"
+  ]
+  selectedColor = "All";
 
   constructor(private paintService:PaintServices, private paletteService: PaletteService) { }
 
@@ -26,4 +38,7 @@ export class PaintsComponent implements OnInit {
     this.paletteService.addPaint(paint)
   }
 
+  selectColor(color: string) {
+    this.selectedColor = color;
+  }
 }
