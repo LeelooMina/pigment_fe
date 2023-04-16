@@ -1,3 +1,10 @@
 .post{
   width: 50%;
 }
+
+
+
+.note {
+
+  transition: all 1s ease 0s;
+}

@@ -1,10 +1,10 @@
-<div class="d-flex align-items-center justify-content-center flex-column">
+<div class="d-flex align-items-center justify-content-center flex-column" >
 
-    <app-post-form class="m-2"></app-post-form>
+    <app-post-form class="m-2" ></app-post-form>
 
 
-    <div class="post" style="border: 1px solid black; margin-bottom: 5px;" *ngFor="let post of posts">
-      <div class="card">
+    <div class="post" style="border: 1px solid black; margin-bottom: 5px;" *ngFor="let post of posts" [@fadeInOut]>
+      <div class="card" >
         <div class="card-header">
           @{{post.username}}
         </div>
@@ -15,5 +15,7 @@
         </div>
       </div>
     </div>
+    <div class="loading" *ngIf="loading">Loading...</div>
+
   </div>
 

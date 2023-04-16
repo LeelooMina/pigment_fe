@@ -20,6 +20,8 @@ import { PostFormComponent } from './posts/post-form/post-form.component';
 import { NewPaletteComponent } from './palette/new-palette/new-palette.component';
 import { UpdatePaletteComponent } from './palette/update-palette/update-palette.component';
 import { ShowPaletteComponent } from './palette/show-palette/show-palette.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { ShowPaletteComponent } from './palette/show-palette/show-palette.compon
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
