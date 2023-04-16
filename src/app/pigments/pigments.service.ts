@@ -13,4 +13,8 @@ export class PigmentsServices {
   getPigments() {
     return this.http.get(this.baseUrl + 'pigments');
   }
+
+  getColorFamilies(){
+    
+  }
 }
