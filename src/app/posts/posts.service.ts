@@ -14,11 +14,19 @@ export class PostsService {
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
-  getPosts() {
-    return this.http.get(this.baseUrl + 'posts').pipe(
+  getPosts(count: number, offset: number) {
+    const token = this.authService.getToken()
 
+    return this.http.get(this.baseUrl + `posts?limit=${count}&offset=${offset}`,{
+      headers: {
+        Authorization: `Bearer ${token.value}`
+      }
+    }).pipe(
+      // handle errors and transform response as needed
     );
   }
+
+
 
   addPost(post: any){
    const token = this.authService.getToken()
