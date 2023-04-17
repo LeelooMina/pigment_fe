@@ -1,8 +1,17 @@
 export class Palette
 {
+  
+  // constructor(
+  //   public paint_id: number,
+  //   public palette_id: number
+  // )
+  // {}
   constructor(
-    public paint_id: number,
-    public palette_id: number
-  )
-  {}
+
+    public name: string,
+    public  description: string,
+     public user_id: number
+
+  ){}
+
 }
