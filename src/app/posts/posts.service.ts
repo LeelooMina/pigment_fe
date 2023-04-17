@@ -46,4 +46,22 @@ subscribeToNewPosts(): Observable<Post> {
   return this.newPostSubject.asObservable();
 }
 
+updatePost(post: Post, id: number){
+  const token = this.authService.getToken()
+
+  console.log("Post ID:", id)
+
+    return this.http.put(`http://localhost:3000/api/v1/post/${id}`, post, {
+      headers: {
+        Authorization: `Bearer ${token.value}`
+      }
+    }).pipe(
+      tap((newPost: any) => {
+        this.newPostSubject.next(newPost);
+        console.log(newPost) // emit the new post to subscribers
+      })
+    );
+
+}
+
 }
