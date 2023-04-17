@@ -19,4 +19,8 @@ export class PaintServices {
     return this.http.get(this.baseUrl + 'paints');
   }
 
+  getColorFamilies(){
+    return this.http.get(this.baseUrl + 'color_families');
+  }
+
 }

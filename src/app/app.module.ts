@@ -21,6 +21,7 @@ import { NewPaletteComponent } from './palette/new-palette/new-palette.component
 import { UpdatePaletteComponent } from './palette/update-palette/update-palette.component';
 import { ShowPaletteComponent } from './palette/show-palette/show-palette.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EditPostComponent } from './posts/edit-post/edit-post.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PostFormComponent,
     NewPaletteComponent,
     UpdatePaletteComponent,
-    ShowPaletteComponent
+    ShowPaletteComponent,
+    EditPostComponent
   ],
   imports: [
     BrowserModule,
