@@ -9,6 +9,7 @@ import {
   trigger,
 } from '@angular/animations';
 import { delay } from 'rxjs';
+import { UserService } from '../auth/user.service';
 
 
 @Component({
@@ -34,10 +35,13 @@ export class PostsComponent implements OnInit {
   offset = 0;
   loading = false;
 
+  currentUser = this.userService.currentUser
+
 
   posts: Post[] = [];
+  editPostId: any;
 
-  constructor(private postsService: PostsService) {}
+  constructor(private postsService: PostsService, private userService: UserService ) {}
 
   ngOnInit(): void {
       this.postsService.getPosts(this.initialPosts, this.offset).subscribe((res: any) => {
@@ -81,7 +85,9 @@ export class PostsComponent implements OnInit {
 
 
 
-
   }
+
+
+
 
 }
