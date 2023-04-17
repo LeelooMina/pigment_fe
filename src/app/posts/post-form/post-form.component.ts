@@ -12,6 +12,8 @@ export class PostFormComponent {
 
   currentUser: any;
 
+
+
   ngOnInit(): void {
   this.currentUser = this.userService.currentUser;
   }
@@ -48,18 +50,8 @@ export class PostFormComponent {
 
 
 
-    // this.blogService.createBlog(newBlog).subscribe({
-    //   next: (res:any) => {
-    //     this.closeBtn.nativeElement.click();
-    //     this.blogService.onAddBlog(res.payload.blog)
-    //   },
-    //   error: (errorRes) => {
-    //     this.errors = errorRes.error.errors;
-    //     console.log(errorRes);
-    //   },
-    // });
-  }
 
+  }
 
 
 
