@@ -15,13 +15,14 @@ export class PaletteService {
   private newPaintSubject = new Subject<any>();
   private removePaintSubject = new Subject<Paint>();
 
-  private baseUrl = 'http://localhost:3000';
+  private baseUrl = 'http://localhost:3000/api/v1';
 
   currentPaints: Paint[] = []
 
   currentPalette: Palette = {
-    paint_id: 0,
-    palette_id: 0
+    name: '',
+      description: '',
+      user_id: 0
   }
 
   currentUser: any;
@@ -41,12 +42,20 @@ export class PaletteService {
   getPaletteById(palette: Palette){
 
   }
-  
+
   createPalette(palette: Palette) {
     this.getUser;
-    this.currentPaints = []
+    // this.currentPaints = []
     this.currentPalette = palette
-    return this.http.post(`${this.baseUrl}/palettes`, palette);
+    const token = this.authService.getToken()
+
+    return this.http.post(`${this.baseUrl}/palettes`, palette,
+    {
+      headers: {
+        Authorization: `Bearer ${token.value}`
+      }
+    })
+
   }
 
   updatePalette(id: number, data: any){

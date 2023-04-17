@@ -1,1 +1,16 @@
-<p>new-palette works!</p>
+<form [formGroup]="paletteForm" (ngSubmit)="savePalette()" style="margin: 0 auto; max-width: 70%;">
+  <div class="row">
+    <div class="col-6">
+      <label class="form-label">Palette Name:</label>
+      <input type="text" class="form-control" formControlName="name">
+    </div>
+    <div class="col-6">
+      <label class="form-label">Description:</label>
+      <input type="text" class="form-control" formControlName="description">
+    </div>
+    <div class="text-center">
+      <button type="submit" class="btn btn-outline-info mt-3">Save</button>
+    </div>
+    <p class="text-center mt-2 small">Switch to <a>log in</a></p>
+    </div>
+</form>

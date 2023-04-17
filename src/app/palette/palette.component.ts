@@ -2,7 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { PaintServices } from '../paints/paint.service';
 import { Paint } from '../shared/models/paint.model';
+import { Palette } from '../shared/models/palette.model';
 import { PaletteService } from './palette.service';
+import { FormBuilder, Validators } from '@angular/forms';
+import { UserService } from '../auth/user.service';
+
 
 @Component({
   selector: 'app-palette',
@@ -36,16 +40,16 @@ menuToggle = false;
 
 paintArr: any;
 
-paletteForm = new FormGroup({
-  description: new FormControl(''),
-  name: new FormControl(''),
+paletteForm = this.formBuilder.group({
+  name: ['', Validators.required],
+  description: [''],
+});
 
-})
+currentUser: any;
 
 
 
-
-  constructor(private paletteService:PaletteService) { }
+  constructor(private paletteService:PaletteService, private formBuilder: FormBuilder, private userService:UserService) { }
 
   ngOnInit(): void {
     this.paintArr = this.paletteService.currentPaints
@@ -59,6 +63,7 @@ paletteForm = new FormGroup({
       console.log(this.paintArr)
     });
 
+    this.currentUser = this.userService.currentUser
 
   }
 
@@ -66,9 +71,18 @@ paletteForm = new FormGroup({
     this.paletteService.deletePaint(paint)
   }
 
-  savePalette(){
+  newPalette(){
     const formData = this.paletteForm.value;
 
+    const palette: Palette = {
+      name: formData.name?.trim() ?? '',
+      description: formData.description?.trim() ?? '',
+      user_id: this.currentUser.id
+    }
+
+    this.paletteService.createPalette(palette).subscribe((res:any) => {
+    console.log(res)
+    })
   }
 
 
