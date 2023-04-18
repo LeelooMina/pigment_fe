@@ -46,7 +46,7 @@ subscribeToNewPosts(): Observable<Post> {
   return this.newPostSubject.asObservable();
 }
 
-updatePost(post: Post, id: number){
+onUpdatePost(post: Post, id: number){
   const token = this.authService.getToken()
 
   console.log("Post ID:", id)
@@ -63,5 +63,11 @@ updatePost(post: Post, id: number){
     );
 
 }
+
+// updatePost(post: Post, id: number){
+//   updatedBlog = {
+//     const index = this.
+//   }
+// }
 
 }

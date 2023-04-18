@@ -49,12 +49,10 @@ export class EditPostComponent implements OnInit {
 
 
 
-    this.postsService.updatePost(post, this.post.id).subscribe({
+    this.postsService.onUpdatePost(post, this.post.id).subscribe({
 
       next: (res: any) => {
-        console.log("What", res)
-        // this.closeBtn.nativeElement.click();
-        // this.blogService.onAddBlog(res.payload.blog)
+        // this.postsService.updatePost(post, this.post.id)
       },
       error: (errorRes) => {
         // this.errors = errorRes.error.errors;
