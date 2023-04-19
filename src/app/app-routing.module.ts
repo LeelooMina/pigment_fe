@@ -8,6 +8,8 @@ import { PostsComponent } from './posts/posts.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { PigmentsComponent } from './pigments/pigments.component';
+import { NewPaletteComponent } from './palette/new-palette/new-palette.component';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
 
@@ -21,19 +23,23 @@ const routes: Routes = [
   },
   {
     path: 'palette',
-    component: PaletteComponent
+    component: PaletteComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'paints',
-    component: PaintsComponent
+    component: PaintsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'posts',
-    component: PostsComponent
+    component: PostsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'post',
-    component: PostComponent
+    component: PostComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'home',
@@ -41,7 +47,13 @@ const routes: Routes = [
   },
   {
     path: 'pigments',
-    component: PigmentsComponent
+    component: PigmentsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'new-palette',
+    component: NewPaletteComponent,
+    canActivate: [AuthGuard]
   }
 
 ];
