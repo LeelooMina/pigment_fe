@@ -1,4 +1,5 @@
-<form [formGroup]="paletteForm" (ngSubmit)="savePalette()" style="margin: 0 auto; max-width: 70%;">
+
+<div *ngIf="editMode == true"><form [formGroup]="paletteForm" (ngSubmit)="updatePalette()" style="margin: 0 auto; max-width: 70%;">
   <div class="row">
     <div class="col-6">
       <label class="form-label">Palette Name:</label>
@@ -11,6 +12,57 @@
     <div class="text-center">
       <button type="submit" class="btn btn-outline-info mt-3">Save</button>
     </div>
-    <p class="text-center mt-2 small">Switch to <a>log in</a></p>
     </div>
 </form>
+</div>
+
+<div *ngIf="editMode == false">{{currentPalette.name}}</div>
+
+<!-- <div class="d-flex justify-content-center align-items-center m-5">
+<div class="watercolor-tin">
+<div class="paints d-flex justify-content-between flex-row m-3">
+  <div class="paint d-flex justify-content-center align-items-center" *ngFor="let color of paletteColors.slice(0,6)" [style.background-color]="color"><h3>+</h3></div>
+</div>
+<div class="paints d-flex justify-content-between flex-row m-3">
+  <div class="paint d-flex justify-content-center align-items-center" *ngFor="let color of paletteColors.slice(6,12)" [style.background-color]="color"><h3 class="plus-sign" (click)="toggleMenu()">+</h3></div>
+</div>
+</div>
+</div> -->
+
+
+
+
+<div class="d-flex justify-content-center align-items-center m-5">
+  <div class="watercolor-tin">
+    <div class="paints d-flex justify-content-between flex-row m-3">
+      <ng-container *ngFor="let paint of paintArr.slice(0, 6); let i = index">
+        <div class="paint d-flex justify-content-center align-items-center popup" (click)="deletePaint(paint)"[style.background-color]="getPaintColor(paint)" title="{{paint.pigment}} - {{paint.name}}">
+          <h3>X</h3>
+        </div>
+      </ng-container>
+      <ng-container *ngFor="let _ of getArray(6 - paintArr.slice(0, 6).length)">
+        <div class="paint d-flex justify-content-center align-items-center"><h3>+</h3></div>
+      </ng-container>
+    </div>
+    <div class="paints d-flex justify-content-between flex-row m-3">
+      <ng-container *ngFor="let paint of paintArr.slice(6, 12); let i = index">
+        <div class="paint d-flex justify-content-center align-items-center popup" (click)="deletePaint(paint)" [style.background-color]="getPaintColor(paint)" title="{{paint.pigment}} - {{paint.name}}" >
+          <h3 >X</h3>
+
+        </div>
+      </ng-container>
+      <ng-container *ngFor="let _ of getArray(6 - paintArr.slice(6, 12).length)">
+        <div class="paint d-flex justify-content-center align-items-center"><h3>+</h3></div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+<button (click)="savePaints()">save</button>
+
+
+<div *ngFor="let paint of paintArr">
+  {{paint.pigment}}
+  <button (click)="deletePaint(paint)">Delete</button>
+</div>
+
+<div class="menu"><app-paints></app-paints></div>
