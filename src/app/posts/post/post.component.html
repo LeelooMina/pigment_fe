@@ -1,1 +1,73 @@
-<p>post works!</p>
+<div class="card">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <div>@{{post.username}}</div>
+
+    <div class="dropdown" *ngIf="post && post.username == currentUser?.username">
+      <button class="btn btn-outline-secondary dropdown-toggle" style="border: 0px;" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+        <span class="material-symbols-outlined">
+          more_vert
+        </span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <li>
+          <a class="dropdown-item" href="#" data-bs-toggle="modal" [attr.data-bs-target]="'#editModal-' + post.id">
+            <span class="material-symbols-outlined">
+              edit
+            </span> Edit
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">
+            <span class="material-symbols-outlined">
+              cancel
+            </span> Delete
+          </a>
+        </li>
+      </ul>
+    </div>
+    </div>
+
+  <div class="card-body">
+    <h5 class="card-title">{{post.title}}</h5>
+    <p class="card-text">{{post.content}}</p>
+
+    <hr>
+    <a href="#" class="btn btn-outline-info"><span class="material-symbols-outlined">
+        thumb_up
+      </span></a>
+    <a href="#" class="btn btn-outline-info"><span class="material-symbols-outlined">comment</span></a>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" [id]="'editModal-' + post.id" tabindex="-1" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Post Form -->
+        <form [formGroup]="postFormGroup" (ngSubmit)="editPost()">
+          <div class="form-group">
+            <label for="post-title">Edit Title</label>
+            {{post.title}}
+            <input type="text" class="form-control" id="post-title" formControlName="title" name="title" required>
+          </div>
+          <div class="form-group">
+            <label for="post-content">Content</label>
+            <textarea class="form-control" id="post-content" formControlName="content" name="content"
+              required></textarea>
+          </div>
+
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-outline-info mt-3" data-bs-dismiss="modal">Submit</button>
+          </div>
+        </form>
+        <!-- End Post Form-->
+      </div>
+    </div>
+  </div>
+</div>

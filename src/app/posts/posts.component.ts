@@ -31,7 +31,7 @@ import { UserService } from '../auth/user.service';
 export class PostsComponent implements OnInit {
 
   initialPosts = 5
-  postsPerScroll = 3;
+  postsPerScroll = 5;
   offset = 0;
   loading = false;
 
@@ -54,7 +54,36 @@ export class PostsComponent implements OnInit {
 
       this.postsService.subscribeToNewPosts().subscribe((post: Post) => {
         // Add the new post to the posts array
-        this.posts.push(post);
+        this.posts.unshift(post);
+    });
+
+    this.postsService.subscribeToEditPosts().subscribe((res: any) => {
+
+      const post = res.post
+      // Find the index of the post with the matching id
+      const index = this.posts.findIndex(p => p.id === post.id);
+
+
+      if (index !== -1) {
+        // Remove the old post from the array
+        this.posts.splice(index, 1);
+
+        // Add the updated post to the beginning of the array
+        this.posts.unshift(post);
+      }
+    });
+
+    this.postsService.subscribeToDeletePosts().subscribe((res: any) => {
+
+      const post = res.post
+      // Find the index of the post with the matching id
+      const index = this.posts.findIndex(p => p.id === post.id);
+
+
+      if (index !== -1) {
+        // Remove the old post from the array
+        this.posts.splice(index, 1);
+      }
     });
 
 

@@ -9,6 +9,8 @@ import { Observable, Subject, tap } from 'rxjs';
 })
 export class PostsService {
   private newPostSubject = new Subject<Post>();
+  private editPostSubject = new Subject<Post>();
+  private deletePostSubject = new Subject<Post>();
 
   baseUrl = 'http://localhost:3000/api/v1/'
 
@@ -46,6 +48,16 @@ subscribeToNewPosts(): Observable<Post> {
   return this.newPostSubject.asObservable();
 }
 
+subscribeToEditPosts(){
+  return this.editPostSubject.asObservable();
+
+}
+
+subscribeToDeletePosts(){
+  return this.deletePostSubject.asObservable();
+
+}
+
 onUpdatePost(post: Post, id: number){
   const token = this.authService.getToken()
 
@@ -57,8 +69,26 @@ onUpdatePost(post: Post, id: number){
       }
     }).pipe(
       tap((newPost: any) => {
-        this.newPostSubject.next(newPost);
+        this.editPostSubject.next(newPost);
         console.log(newPost) // emit the new post to subscribers
+      })
+    );
+
+}
+
+onDeletePost(id: number){
+  const token = this.authService.getToken()
+
+  console.log("Post ID:", id)
+
+    return this.http.delete(`http://localhost:3000/api/v1/post/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token.value}`
+      }
+    }).pipe(
+      tap((res: any) => {
+        this.deletePostSubject.next(res);
+        console.log(res) // emit the new post to subscribers
       })
     );
 

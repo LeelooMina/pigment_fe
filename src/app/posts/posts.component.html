@@ -1,30 +1,9 @@
-<div class="d-flex align-items-center justify-content-center flex-column" >
+<div class="d-flex align-items-center justify-content-center flex-column" [@fadeInOut]>
+  <app-post-form class="m-2"></app-post-form>
 
-    <app-post-form class="m-2" ></app-post-form>
-
-
-    <div class="post" style=" margin-bottom: 5px;" *ngFor="let post of posts" [@fadeInOut]>
-      <div class="card" >
-        <div class="card-header d-flex justify-content-between align-items-center">
-          <div>@{{post.username}}</div>
-
-
-          <div *ngIf="post && post.username == currentUser?.username" class="btn btn-outline-info">
-            <app-edit-post [post]="post"></app-edit-post>
-          </div>
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">{{post.title}}</h5>
-          <p class="card-text">{{post.content}}</p>
-
-          <a href="#" class="btn btn-outline-info">Like</a>
-
-
-        </div>
-      </div>
-    </div>
-    <div class="loading" *ngIf="loading">Loading...</div>
-
+  <div class="post" style=" margin-bottom: 5px;" *ngFor="let post of posts" [@fadeInOut]>
+    <app-post [post]="post"></app-post>
   </div>
 
-
+  <div class="loading" *ngIf="loading"><img src="../../assets/loading.gif"></div>
+</div>
