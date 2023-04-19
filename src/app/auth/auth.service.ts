@@ -57,6 +57,11 @@ export class AuthService {
 
   }
 
+  isLoggedIn(): boolean {
+    const token = this.getToken();
+    return token !== null;
+  }
+
   getToken(){
 
     if (localStorage.getItem('token') != null){
