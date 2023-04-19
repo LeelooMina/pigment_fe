@@ -35,8 +35,13 @@ export class PaletteService {
     return this.http.get(`${this.baseUrl}/palettes`);
   }
 
-  getUserPalettes(){
-
+  getUserPalettes(userId: any){
+    const token = this.authService.getToken()
+    return this.http.get(`${this.baseUrl}/palettes?user_id=${userId}`,   {
+      headers: {
+        Authorization: `Bearer ${token.value}`
+      }
+    })
   }
 
   getPaletteById(palette: Palette){
@@ -59,12 +64,25 @@ export class PaletteService {
   }
 
   updatePalette(id: number, data: any){
-    return this.http.put(`${this.baseUrl}/palettes/${id}`, data);
+    const token = this.authService.getToken()
+    return this.http.put(`${this.baseUrl}/palettes/${id}`, data, {
+      headers: {
+        Authorization: `Bearer ${token.value}`
+      }
+    });
   }
 
   deletePalette(id: number){
-    return this.http.delete(`${this.baseUrl}/palettes/${id}`);
-  }
+    const token = this.authService.getToken();
+
+    return this.http.delete(`http://localhost:3000/api/v1/paint_palettes?palette_id=${id}`, {
+      headers: {
+        Authorization: `Bearer ${token.value}`
+      }
+    })
+
+    }
+
 
   addPaint(paint: Paint){
     if (this.currentPaints.length <= 11){
@@ -101,21 +119,46 @@ export class PaletteService {
   savePalette(palette: any) {
     const token = this.authService.getToken();
 
-    this.currentPaints.forEach(paint => {
-      this.http.post(`http://localhost:3000/api/v1/paint_palettes`, {
-        "paint_id": paint.id,
-        "palette_id": palette.id
-    }, {
-        headers: {
-          Authorization: `Bearer ${token.value}`
-        }
-      }).subscribe(response => {
-        console.log(response);
-      }, error => {
-        console.log(error);
+    // delete all existing associations
+    this.http.delete(`http://localhost:3000/api/v1/paint_palettes?palette_id=${palette.id}`, {
+      headers: {
+        Authorization: `Bearer ${token.value}`
+      }
+    }).subscribe(() => {
+      // save the new batch
+      this.currentPaints.forEach(paint => {
+        this.http.post(`http://localhost:3000/api/v1/paint_palettes`, {
+          "paint_id": paint.id,
+          "palette_id": palette.id
+        }, {
+          headers: {
+            Authorization: `Bearer ${token.value}`
+          }
+        }).subscribe(response => {
+          console.log(response);
+        }, error => {
+          console.log(error);
+        });
       });
+    }, error => {
+      console.log(error);
     });
   }
+
+  deleteAllPaint(id: number){
+
+    const token = this.authService.getToken();
+      return this.http.delete(`${this.baseUrl}/palettes/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token.value}`
+      }
+    })
+
+  }
+
+
+
+
 
 
   getUser(){

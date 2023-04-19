@@ -1,1 +1,25 @@
-<p>show-palette works!</p>
+<div class="d-flex justify-content-center align-items-center m-5">
+  <div class="watercolor-tin">
+    <div class="paints d-flex justify-content-between flex-row m-3">
+      <ng-container *ngFor="let paint of paintArr.slice(0, 6); let i = index">
+        <div class="paint d-flex justify-content-center align-items-center popup" [style.background-color]="getPaintColor(paint)" title="{{paint.pigment}} - {{paint.name}}">
+
+        </div>
+      </ng-container>
+      <ng-container *ngFor="let _ of getArray(6 - paintArr.slice(0, 6).length)">
+        <div class="paint d-flex justify-content-center align-items-center"></div>
+      </ng-container>
+    </div>
+    <div class="paints d-flex justify-content-between flex-row m-3">
+      <ng-container *ngFor="let paint of paintArr.slice(6, 12); let i = index">
+        <div class="paint d-flex justify-content-center align-items-center popup"[style.background-color]="getPaintColor(paint)" title="{{paint.pigment}} - {{paint.name}}">
+
+
+        </div>
+      </ng-container>
+      <ng-container *ngFor="let _ of getArray(6 - paintArr.slice(6, 12).length)">
+        <div class="paint d-flex justify-content-center align-items-center"></div>
+      </ng-container>
+    </div>
+  </div>
+</div>
