@@ -6,3 +6,63 @@
   overflow: hidden;
 
 }
+
+.sticky{
+  position: sticky;
+  top: 400px;
+  z-index: 100;
+}
+
+.nav-tabs {
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobile-scrollable {
+  overflow-x: auto;
+  height: 50px;
+  width: 100%;
+}
+
+.nav-tabs-horizontal-scroll {
+  display: flex;
+  align-items: center;
+
+}
+
+.scroll-arrow {
+  font-size: 1.5rem;
+  color: #666;
+  margin-left: 5px;
+}
+
+@media only screen and (min-width: 768px) {
+  .mobile-scrollable {
+    overflow-x: visible;
+  }
+  .nav-tabs-horizontal-scroll {
+    overflow-x: auto;
+  }
+  .scroll-arrow {
+    display: none;
+  }
+  .nav-tabs-horizontal-scroll {
+    justify-content: flex-start;
+  }
+  .my-nav-tabs {
+    justify-content: flex-start;
+  }
+}
+
+.container-fluid {
+
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch; /* Optional: Enable momentum scrolling on iOS */
+}
+
+.nav .nav-tabs .flex-nowrap{
+  height: 400px;
+}

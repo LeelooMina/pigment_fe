@@ -15,8 +15,8 @@ export class PaintServices {
     return this.http.get(this.baseUrl + 'paints');
   }
 
-  filterPaints(){
-    return this.http.get(this.baseUrl + 'paints');
+  filterPaintsByColor(color_family_id: any){
+    return this.http.get(this.baseUrl + `paints?color_family_id=${color_family_id}`);
   }
 
   getColorFamilies(){

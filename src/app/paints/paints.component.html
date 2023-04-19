@@ -1,30 +1,47 @@
-<ul class="nav nav-tabs">
-  <li class="nav-item" *ngFor="let color of colorFamilies">
-    <a class="nav-link"
-    [class.active]="color.swatch_url === selectedColor"
-    (click)="selectColor(color.swatch_url)"
-    [style.color]="color.name === 'Black' ? 'White' : 'black'"
-    [style.backgroundColor]="color.swatch_url === 'Yellow' || color.swatch_url === 'white' ? 'black' : color.swatch_url"
-    [style.border]="color.swatch_url === '#ffffff' ? '1px solid black' : 'none'"
-    >{{color.name}}</a>
-  </li>
-</ul>
+<div class="container-fluid mobile-scrollable" [@fadeInOut] style="width: 100%; padding: 0px;">
+  <div class="nav-tabs-horizontal-scroll">
+    <ul class="nav nav-tabs flex-nowrap" style="height:500px; width: 100%;">
+      <li class="nav-item" *ngFor="let color of colorFamilies">
+        <a class="nav-link"
+          [class.active]="color.swatch_url === selectedColor"
+          (click)="selectColor(color.swatch_url, color.id)"
+          [style.color]="color.name === 'Black' ? 'White' : 'black'"
+          [style.backgroundColor]="color.swatch_url === 'Yellow' || color.swatch_url === 'white' ? 'black' : color.swatch_url"
+          [style.border]="color.swatch_url === '#ffffff' ? '1px solid black' : 'none'"
+        >{{color.name}}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"
+          [class.active]="selectedColor == 'all'"
+          (click)="allColors()"
+          [style.border]="'.5px solid black'"
+        >All</a>
+      </li>
+    </ul>
+    <div class="scroll-arrow">
+      <span class="material-symbols-outlined">
+        arrow_forward_ios
+        </span>
+    </div>
+  </div>
+</div>
 
 
 
 
-<div class="container m-3">
+
+<div class="container m-3" style="height: 500px; overflow-y: scroll;" [@fadeInOut]>
   <div class="row">
     <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-3" *ngFor="let paint of paints">
-      <div style="border: 1px solid black; height: 100%;" (click)="onClick(paint)" class="card">
-        <div class="card-header">
+      <div style="border: 1px solid black; height: 100%;" (click)="onClick(paint)" class="card" [@fadeInOut]>
+        <div class="card-header" [@fadeInOut]>
           {{paint.name}}
         </div>
         <div class="card-body">
-          <h5 class="card-title">{{paint.pigment}}</h5>
+          <h5 class="card-title"[@fadeInOut]>{{paint.pigment}}</h5>
           <p class="card-text"
           [style.width.%]="50" [style.height.%]="50"
-          [style.background-color]="getPaintColor(paint)" ></p>
+          [style.background-color]="getPaintColor(paint)" [@fadeInOut] ></p>
 
         </div>
       </div>
