@@ -17,7 +17,7 @@ export class PaletteService {
 
   private baseUrl = 'http://localhost:3000/api/v1';
 
-  currentPaints: Paint[] = []
+  currentPaints: any[] = []
 
   currentPalette: Palette = {
     name: '',
@@ -63,7 +63,7 @@ export class PaletteService {
 
   }
 
-  updatePalette(id: number, data: any){
+  updatePalette(id: any, data: any){
     const token = this.authService.getToken()
     return this.http.put(`${this.baseUrl}/palettes/${id}`, data, {
       headers: {
@@ -85,7 +85,8 @@ export class PaletteService {
 
 
   addPaint(paint: Paint){
-    if (this.currentPaints.length <= 11){
+    console.log(this.currentPaints)
+    if (this.currentPaints != null && this.currentPaints.length <= 11){
     this.currentPaints.push(paint)
     this.newPaintSubject.next(this.currentPaints)
     console.log(this.currentPaints)
@@ -136,6 +137,7 @@ export class PaletteService {
           }
         }).subscribe(response => {
           console.log(response);
+
         }, error => {
           console.log(error);
         });
@@ -157,7 +159,9 @@ export class PaletteService {
   }
 
 
-
+currentPalettePaints(palette: Palette){
+  this.currentPaints = palette.paints
+}
 
 
 

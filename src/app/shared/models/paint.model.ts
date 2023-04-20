@@ -10,7 +10,8 @@ export class Paint {
     public available: boolean,
     public created_at: Date,
     public updated_at: Date,
-    public pigments: any[],
-    public color_family_id: number
+    public pigment?: any,
+    public color_family_id?: number,
+    ...res: any[]
   ) {}
 }

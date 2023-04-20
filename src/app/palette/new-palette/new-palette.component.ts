@@ -39,7 +39,7 @@ menuNav = []
 
 menuToggle = false;
 
-paintArr: any;
+paintArr: any = [];
 
 paletteForm = this.formBuilder.group({
   name: ['', Validators.required],
@@ -58,12 +58,18 @@ currentUser: any;
   constructor(private paletteService:PaletteService, private formBuilder: FormBuilder, private userService:UserService, private paintService:PaintServices, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.paintArr = this.paletteService.currentPaints
+
 
     this.currentPalette = history.state.palette;
+    if(this,this.currentPalette.paints != null){
+    this.paintArr = this.currentPalette.paints
+    this.paletteService.currentPalettePaints(this.currentPalette)
     console.log(this.currentPalette)
+    }
 
-
+    // if (history.state.editMode){
+    //   this.editMode = history.state.editMode
+    // }
 
 
 
@@ -108,7 +114,9 @@ currentUser: any;
       user_id: this.currentUser.id
     }
 
-    this.paletteService.updatePalette(this.currentPalette.user_id, palette).subscribe((res:any) => {
+    this.paletteService.updatePalette(this.currentPalette.id, palette).subscribe((res:any) => {
+      this.currentPalette = res;
+      this.editMode = false;
     console.log(res)
     })
   }
@@ -121,8 +129,13 @@ currentUser: any;
 
 
 
-  toggleMenu(){
+  editName(){
+    this.paletteForm = this.formBuilder.group({
+      name: [this.currentPalette.name, Validators.required],
+      description: [this.currentPalette.description]
+    });
 
+    this.editMode = true;
   }
 
 }

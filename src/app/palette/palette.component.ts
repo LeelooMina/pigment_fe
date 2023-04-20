@@ -30,34 +30,14 @@ import { Router } from '@angular/router';
 })
 export class PaletteComponent implements OnInit {
 
-// paletteColors: any;
 
 
-paletteColors = [
-  "#FFFFFF",
-  "#FFFFFF",
-  "#FFFFFF",
-  "#FFFFFF",
-  "#FFFFFF",
-  "#FFFFFF",
-  "#FFFFFF",
-  "#FFFFFF",
-  "#FFFFFF",
-  "#FFFFFF",
-  "#FFFFFF",
-  "#FFFFFF",
-
-]
-
-menuNav = []
-
-menuToggle = false;
 
 paintArr: any;
 
 paletteForm = this.formBuilder.group({
   name: ['', Validators.required],
-  description: [''],
+  description: ['', Validators.required],
 });
 
 currentUser: any;
@@ -65,11 +45,19 @@ currentUser: any;
 userPalettes: Palette[] = []
 
 
+  currentPalette: Palette = {
+    name: '',
+    description: '',
+    user_id: 0
+  }
+
+
 
   constructor(private paletteService:PaletteService, private formBuilder: FormBuilder, private userService:UserService, private router: Router) { }
 
   ngOnInit(): void {
 
+    this.currentUser = this.userService.currentUser
     this.getUserPalettes();
 
 
@@ -85,7 +73,6 @@ userPalettes: Palette[] = []
       console.log(this.paintArr)
     });
 
-    this.currentUser = this.userService.currentUser
 
 
   }
@@ -113,8 +100,9 @@ userPalettes: Palette[] = []
 
   getUserPalettes(){
 
-    this.paletteService.getUserPalettes(1).subscribe((res:any) => {
+    this.paletteService.getUserPalettes(this.currentUser.id).subscribe((res:any) => {
       this.userPalettes = res
+      this.userPalettes.reverse();
       console.log(this.userPalettes)
     })
   }
@@ -132,7 +120,37 @@ userPalettes: Palette[] = []
   }
 
 editPalette(palette: Palette){
+  this.paletteService.currentPalettePaints(palette.paints)
+  console.log(palette)
+  this.router.navigate(['/new-palette'], { state: { palette: palette, editMode: true } })
 
 }
 
+openEditPaletteModal(palette: Palette) {
+  // Set the current palette and update the form values
+  this.currentPalette = palette;
+  this.paletteForm.setValue({
+    name: palette.name,
+    description: palette.description
+  });
+
+  // Show the modal
+  // $('#editPaletteModal').modal('show');
 }
+
+// updatePalette(palette: Palette) {
+//   // Update the current palette with the form values
+
+
+//   palette.name = this.paletteForm.get('name').value;
+//   this.currentPalette.description = this.paletteForm.get('description').value;
+
+//   // Call the service to update the palette
+//   this.paletteService.updatePalette(this.currentPalette).subscribe(() => {
+//     // Close the modal and reload the palettes
+//     $('#editPaletteModal').modal('hide');
+//     this.loadUserPalettes();
+//   });
+}
+
+
