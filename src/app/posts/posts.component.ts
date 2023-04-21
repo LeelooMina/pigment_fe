@@ -44,7 +44,9 @@ export class PostsComponent implements OnInit {
   constructor(private postsService: PostsService, private userService: UserService ) {}
 
   ngOnInit(): void {
+    console.log("hey")
       this.postsService.getPosts(this.initialPosts, this.offset).subscribe((res: any) => {
+        
         // console.log(res)
         // if (res.success) {
           this.posts = res;
